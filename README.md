@@ -23,18 +23,18 @@ No additional configuration is required. By default, the script processes files 
 
 ## Usage
 
-1. Open PowerShell.
-2. Navigate to the directory containing the `MergeFilesAndCopy.ps1` script.
+1. Add to path
+2. Navigate to the directory where you want to merge and copy files.
 3. To run the script, enter the following command:
 
    ```powershell
-   .\MergeFilesAndCopy.ps1 -Extensions "*.ext1", "*.ext2", "*.ext3"
+   .\MergeFilesAndCopy --extensions ext1 ext2 --ignore ext3
    ```
    
    Replace `*.ext1`, `*.ext2`, `*.ext3` with the file extensions you want to process. For example, if you want to process `.html` and `.css` files, use:
 
    ```powershell
-   .\MergeFilesAndCopy.ps1 -Extensions "*.html", "*.css"
+   .\MergeFilesAndCopy --extensions html json --ignore md
    ```
 
    If you don't specify any extensions, the script will default to `.ts`, `.tsx`, `.js`, and `.jsx`.
