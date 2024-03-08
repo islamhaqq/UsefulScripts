@@ -71,7 +71,3 @@ Ensure you download and run scripts from trusted sources only. Running unverifie
 - **Clipboard does not contain the expected content**: Check that files matching your specified extensions exist within the directory or its subdirectories. Also, ensure the clipboard is not too large for your system to handle.
 
 For further assistance, please refer to the official Python documentation or the documentation for the `pyperclip` module.
-
----
-
-This README now includes instructions for both Windows and Linux/macOS users, making your script accessible to a broader audience. Adjust the content according to your script's specifics or your users' needs.
