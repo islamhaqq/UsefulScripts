@@ -1,6 +1,6 @@
-# Accepts a process name as a parameter
 param(
-    [string]$ProcessName = "Raaq" # Default is 'Raaq' if no argument is provided
+    [Parameter(Mandatory=$true)]
+    [string]$ProcessName
 )
 
 # Get all processes with the specified name
