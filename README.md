@@ -1,63 +1,73 @@
-Below is an example of how you could structure a README file for your PowerShell script, `MergeFilesAndCopy.ps1`. This README will provide users with all the information they need to use the script effectively.
-
----
-
-# MergeFilesAndCopy PowerShell Script
+# MergeFiles Script
 
 ## Description
 
-`MergeFilesAndCopy.ps1` is a PowerShell script designed to concatenate the contents of files with specified extensions from the current directory and all its subdirectories, prefixing each file's content with its relative file path. The combined contents are then copied to the clipboard for easy pasting.
+`merge_files.py` is a script designed to concatenate the contents of files with specified extensions from the current directory and all its subdirectories, prefixing each file's content with its relative file path. The combined contents are then copied to the clipboard for easy pasting.
 
 ## Requirements
 
-- PowerShell 5.0 or higher.
-- Windows operating system.
+- Python 3.6 or higher.
+- The `pyperclip` module for accessing the clipboard, which can be installed using `pip install pyperclip`.
 
 ## Installation
 
-No installation is required. Simply download the `MergeFilesAndCopy.ps1` file to your preferred directory.
+1. Ensure Python and pip are installed on your system.
+2. Install the `pyperclip` module using pip:
+   ```bash
+   pip install pyperclip
+   ```
+3. Download `merge_files.py` to your preferred directory.
 
 ## Configuration
 
-No additional configuration is required. By default, the script processes files with the extensions `.ts`, `.tsx`, `.js`, and `.jsx`. You can modify this by passing different extensions when running the script.
+No additional configuration is required. The script can be run with default settings, which will process all files. You can specify which file extensions to include or ignore via command-line arguments.
 
 ## Usage
 
-1. Open PowerShell.
-2. Navigate to the directory containing the `MergeFilesAndCopy.ps1` script.
-3. To run the script, enter the following command:
+### For Linux and macOS Users:
 
-   ```powershell
-   .\MergeFilesAndCopy.ps1 -Extensions "*.ext1", "*.ext2", "*.ext3"
-   ```
-   
-   Replace `*.ext1`, `*.ext2`, `*.ext3` with the file extensions you want to process. For example, if you want to process `.html` and `.css` files, use:
+1. Create a shell script named `merge_files` (without extension) in the same directory as your `merge_files.py`. Paste the following code into it:
 
-   ```powershell
-   .\MergeFilesAndCopy.ps1 -Extensions "*.html", "*.css"
-   ```
+    ```bash
+    #!/bin/bash
+    # Wrapper script to run merge_files.py from anywhere
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+    python3 "$DIR/merge_files.py" "$@"
+    ```
 
-   If you don't specify any extensions, the script will default to `.ts`, `.tsx`, `.js`, and `.jsx`.
+2. Make your shell script executable by changing its permissions:
 
-4. After the script has finished running, the combined content of the files will be copied to your clipboard. You can paste it wherever needed.
+    ```bash
+    chmod +x /path/to/merge_files
+    ```
+
+3. Add the directory containing `merge_files` to your system's PATH environment variable:
+
+    ```bash
+    export PATH=$PATH:/path/to/your/script
+    ```
+    
+    Add this line to your `.bashrc` or `.zshrc` to make the change permanent.
+
+4. Navigate to the directory where you want to merge and copy files. Run the script using the following command:
+
+    ```bash
+    merge_files --extensions ext1 ext2 --ignore ext3 ext4
+    ```
+
+    Replace `ext1`, `ext2`, `ext3`, and `ext4` with the file extensions you want to process or ignore.
+
+### For Windows Users:
+
+Refer to the earlier provided instructions for setting up and running the batch file wrapper for the Python script.
 
 ## Security Notice
 
-Before running the script, you might need to alter your PowerShell execution policy, as PowerShell scripts are disabled by default for security reasons. To change the execution policy, open PowerShell as an Administrator and run:
-
-```powershell
-Set-ExecutionPolicy RemoteSigned
-```
-
-This change allows the execution of PowerShell scripts that are created on your local machine. Be sure to understand the security implications of this change before proceeding.
+Ensure you download and run scripts from trusted sources only. Running unverified scripts can pose a security risk to your system.
 
 ## Troubleshooting
 
-- **Script does not run**: Make sure you've set the execution policy to allow script execution. See the Security Notice section for more details.
-- **Clipboard does not contain the expected content**: Verify that there are files matching your specified extensions within the directory or its subdirectories. If the files are too large, you might encounter issues with clipboard limitations.
+- **Script does not run**: Ensure Python is correctly installed, and the `pyperclip` module is installed. Verify your PATH includes the directory containing the script.
+- **Clipboard does not contain the expected content**: Check that files matching your specified extensions exist within the directory or its subdirectories. Also, ensure the clipboard is not too large for your system to handle.
 
-For further assistance, please refer to the official PowerShell documentation or submit an issue on the repository where you downloaded this script.
-
----
-
-This README provides a comprehensive guide for users, but you can adjust it according to your script's features or your users' needs.
+For further assistance, please refer to the official Python documentation or the documentation for the `pyperclip` module.
