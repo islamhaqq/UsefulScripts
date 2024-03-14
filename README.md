@@ -1,4 +1,4 @@
-# Useful Python Scripts Repository
+# Useful Scripts Repository
 
 This repository contains a collection of Python scripts designed for various automation and utility tasks such as killing processes and merging file contents. These scripts are designed to be cross-platform and can be used on Linux, macOS, and Windows.
 
