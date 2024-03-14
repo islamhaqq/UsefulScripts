@@ -57,9 +57,62 @@ No additional configuration is required. The script can be run with default sett
 
     Replace `ext1`, `ext2`, `ext3`, and `ext4` with the file extensions you want to process or ignore.
 
-### For Windows Users:
+## Setting up Python Scripts on Windows
 
-Refer to the earlier provided instructions for setting up and running the batch file wrapper for the Python script.
+To run these Python scripts seamlessly on Windows, you can follow these steps:
+
+1. **Set Python as the default program for `.py` files:**
+   - Right-click on any `.py` file in Windows Explorer.
+   - Select 'Open with' > 'Choose another app'.
+   - Select 'More apps', scroll down, and select 'Look for another app on this PC'.
+   - Navigate to your Python executable (e.g., `C:\Users\YourUsername\Anaconda3\python.exe` for Anaconda or `C:\Python39\python.exe` for standard Python installations) and select it.
+   - Ensure the 'Always use this app to open .py files' checkbox is checked before clicking 'OK'.
+
+2. **Add Python Scripts to the Windows PATH:**
+   - This step makes it possible to run your Python scripts from anywhere in Command Prompt or Windows Explorer.
+   - Search for 'Environment Variables' in the Windows search bar and select 'Edit the system environment variables'.
+   - In the System Properties window, click the 'Environment Variables...' button.
+   - In the 'System variables' section, find the 'Path' variable and select 'Edit...'.
+   - Click 'New' and add the path to your scripts' directory (e.g., `C:\Source\UsefulScripts`).
+   - Click 'OK' on all dialogs to apply your changes.
+
+Now, you should be able to double-click Python scripts to run them, or execute them directly from the command line or Windows Explorer's address bar without specifying the Python interpreter explicitly. Ensure that any script you intend to run has the correct shebang (`#!/usr/bin/env python3`) at the top if you plan on using them cross-platform.
+
+## Usage Instructions
+
+### Windows
+
+After setting up your Python environment, navigate to the directory where you want to use the scripts and directly execute them:
+
+```cmd
+kill_named_process.py ProcessName
+```
+
+or
+
+```cmd
+merge_files.py --extensions txt py --ignore json log
+```
+
+### Linux and macOS
+
+Make sure the scripts are executable:
+
+```bash
+chmod +x kill_named_process.py merge_files.py
+```
+
+Run the scripts from the terminal:
+
+```bash
+./kill_named_process.py ProcessName
+```
+
+or
+
+```bash
+./merge_files.py --extensions txt py --ignore json log
+```
 
 ## Security Notice
 
