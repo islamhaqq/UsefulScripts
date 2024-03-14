@@ -1,65 +1,54 @@
-# MergeFiles Script
+# Useful Python Scripts
 
-## Description
+This repository contains a collection of useful Python scripts for various tasks, such as killing processes and merging file contents. These scripts are designed to be cross-platform and can be used on Linux, macOS, and Windows.
 
-`merge_files.py` is a script designed to concatenate the contents of files with specified extensions from the current directory and all its subdirectories, prefixing each file's content with its relative file path. The combined contents are then copied to the clipboard for easy pasting.
+## Scripts
 
-## Requirements
+### merge_files.py
 
-- Python 3.6 or higher.
-- The `pyperclip` module for accessing the clipboard, which can be installed using `pip install pyperclip`.
+Merges the contents of files with specified extensions from the current directory and its subdirectories, prefixing each file's content with its relative path. The combined contents are then copied to the clipboard.
+
+#### Requirements
+
+- Python 3.6 or higher
+- `pyperclip` module
+
+#### Usage
+
+Run the script with the following command, specifying extensions to include or ignore:
+
+```bash
+python merge_files.py --extensions txt py --ignore json log
+```
+
+### kill_named_process.py
+
+Kills all processes with a specified name.
+
+#### Requirements
+
+- Python 3.6 or higher
+- `psutil` module
+
+#### Usage
+
+Run the script with the following command, providing the name of the process to kill:
+
+```bash
+python kill_named_process.py ProcessName
+```
+
+Replace `ProcessName` with the actual name of the process you want to kill.
 
 ## Installation
 
-1. Ensure Python and pip are installed on your system.
-2. Install the `pyperclip` module using pip:
-   ```bash
-   pip install pyperclip
-   ```
-3. Download `merge_files.py` to your preferred directory.
+1. Ensure Python and `pip` are installed on your system.
+2. Clone this repository or download the scripts you need.
+3. Install required Python modules:
 
-## Configuration
-
-No additional configuration is required. The script can be run with default settings, which will process all files. You can specify which file extensions to include or ignore via command-line arguments.
-
-## Usage
-
-### For Linux and macOS Users:
-
-1. Create a shell script named `merge_files` (without extension) in the same directory as your `merge_files.py`. Paste the following code into it:
-
-    ```bash
-    #!/bin/bash
-    # Wrapper script to run merge_files.py from anywhere
-    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-    python3 "$DIR/merge_files.py" "$@"
-    ```
-
-2. Make your shell script executable by changing its permissions:
-
-    ```bash
-    chmod +x /path/to/merge_files
-    ```
-
-3. Add the directory containing `merge_files` to your system's PATH environment variable:
-
-    ```bash
-    export PATH=$PATH:/path/to/your/script
-    ```
-    
-    Add this line to your `.bashrc` or `.zshrc` to make the change permanent.
-
-4. Navigate to the directory where you want to merge and copy files. Run the script using the following command:
-
-    ```bash
-    merge_files --extensions ext1 ext2 --ignore ext3 ext4
-    ```
-
-    Replace `ext1`, `ext2`, `ext3`, and `ext4` with the file extensions you want to process or ignore.
-
-### For Windows Users:
-
-Refer to the earlier provided instructions for setting up and running the batch file wrapper for the Python script.
+```bash
+pip install pyperclip psutil
+```
 
 ## Security Notice
 
@@ -67,7 +56,6 @@ Ensure you download and run scripts from trusted sources only. Running unverifie
 
 ## Troubleshooting
 
-- **Script does not run**: Ensure Python is correctly installed, and the `pyperclip` module is installed. Verify your PATH includes the directory containing the script.
-- **Clipboard does not contain the expected content**: Check that files matching your specified extensions exist within the directory or its subdirectories. Also, ensure the clipboard is not too large for your system to handle.
-
-For further assistance, please refer to the official Python documentation or the documentation for the `pyperclip` module.
+- **Script does not run**: Make sure Python is correctly installed, and the required modules are installed.
+- **Clipboard does not contain the expected content**: Verify that files matching your specified extensions exist within the directory or its subdirectories.
+- **Cannot kill a process**: Ensure you have the necessary permissions to kill the process, and that you are using the correct process name.
