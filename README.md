@@ -1,126 +1,90 @@
-# MergeFiles Script
+# Useful Python Scripts Repository
 
-## Description
+This repository contains a collection of Python scripts designed for various automation and utility tasks such as killing processes and merging file contents. These scripts are designed to be cross-platform and can be used on Linux, macOS, and Windows.
 
-`merge_files.py` is a script designed to concatenate the contents of files with specified extensions from the current directory and all its subdirectories, prefixing each file's content with its relative file path. The combined contents are then copied to the clipboard for easy pasting.
+## Scripts Overview
 
-## Requirements
+### kill_named_process.py
 
-- Python 3.6 or higher.
-- The `pyperclip` module for accessing the clipboard, which can be installed using `pip install pyperclip`.
+This script allows users to kill processes by name on any operating system. 
 
-## Installation
+#### Requirements
+
+- Python 3.6 or higher
+- `psutil` module
+
+#### Usage
+
+Execute the script by providing the name of the process you want to terminate:
+
+```bash
+python kill_named_process.py <ProcessName>
+```
+
+### merge_files.py
+
+Concatenates the contents of files with specified extensions from the current directory and all its subdirectories, prefixing each file's content with its relative path. The combined contents are then copied to the clipboard.
+
+#### Requirements
+
+- Python 3.6 or higher
+- `pyperclip` module
+
+#### Usage
+
+Execute the script with optional arguments for file extensions to include or ignore:
+
+```bash
+python merge_files.py --extensions txt py --ignore json log
+```
+
+## General Installation
 
 1. Ensure Python and pip are installed on your system.
-2. Install the `pyperclip` module using pip:
+2. Clone this repository or download the scripts you are interested in.
+3. Install required Python modules via pip:
+
    ```bash
-   pip install pyperclip
+   pip install pyperclip psutil
    ```
-3. Download `merge_files.py` to your preferred directory.
 
-## Configuration
+## Setting Up Python Scripts on Windows
 
-No additional configuration is required. The script can be run with default settings, which will process all files. You can specify which file extensions to include or ignore via command-line arguments.
+1. **Set Python as the default program for `.py` files**: Right-click on any `.py` file, select 'Open with' > 'Choose another app', find your Python executable, and set it as the default.
+2. **Add Python Scripts to the Windows PATH**: This allows running your Python scripts from anywhere in Command Prompt or Windows Explorer. Add your script directory to the 'Path' variable in 'Environment Variables'.
 
-## Usage
-
-### For Linux and macOS Users:
-
-1. Create a shell script named `merge_files` (without extension) in the same directory as your `merge_files.py`. Paste the following code into it:
-
-    ```bash
-    #!/bin/bash
-    # Wrapper script to run merge_files.py from anywhere
-    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-    python3 "$DIR/merge_files.py" "$@"
-    ```
-
-2. Make your shell script executable by changing its permissions:
-
-    ```bash
-    chmod +x /path/to/merge_files
-    ```
-
-3. Add the directory containing `merge_files` to your system's PATH environment variable:
-
-    ```bash
-    export PATH=$PATH:/path/to/your/script
-    ```
-    
-    Add this line to your `.bashrc` or `.zshrc` to make the change permanent.
-
-4. Navigate to the directory where you want to merge and copy files. Run the script using the following command:
-
-    ```bash
-    merge_files --extensions ext1 ext2 --ignore ext3 ext4
-    ```
-
-    Replace `ext1`, `ext2`, `ext3`, and `ext4` with the file extensions you want to process or ignore.
-
-## Setting up Python Scripts on Windows
-
-To run these Python scripts seamlessly on Windows, you can follow these steps:
-
-1. **Set Python as the default program for `.py` files:**
-   - Right-click on any `.py` file in Windows Explorer.
-   - Select 'Open with' > 'Choose another app'.
-   - Select 'More apps', scroll down, and select 'Look for another app on this PC'.
-   - Navigate to your Python executable (e.g., `C:\Users\YourUsername\Anaconda3\python.exe` for Anaconda or `C:\Python39\python.exe` for standard Python installations) and select it.
-   - Ensure the 'Always use this app to open .py files' checkbox is checked before clicking 'OK'.
-
-2. **Add Python Scripts to the Windows PATH:**
-   - This step makes it possible to run your Python scripts from anywhere in Command Prompt or Windows Explorer.
-   - Search for 'Environment Variables' in the Windows search bar and select 'Edit the system environment variables'.
-   - In the System Properties window, click the 'Environment Variables...' button.
-   - In the 'System variables' section, find the 'Path' variable and select 'Edit...'.
-   - Click 'New' and add the path to your scripts' directory (e.g., `C:\Source\UsefulScripts`).
-   - Click 'OK' on all dialogs to apply your changes.
-
-Now, you should be able to double-click Python scripts to run them, or execute them directly from the command line or Windows Explorer's address bar without specifying the Python interpreter explicitly. Ensure that any script you intend to run has the correct shebang (`#!/usr/bin/env python3`) at the top if you plan on using them cross-platform.
-
-## Usage Instructions
+## Execution Instructions
 
 ### Windows
 
-After setting up your Python environment, navigate to the directory where you want to use the scripts and directly execute them:
+After setting up your Python environment, directly execute the scripts from any directory:
 
 ```cmd
-kill_named_process.py ProcessName
-```
-
-or
-
-```cmd
-merge_files.py --extensions txt py --ignore json log
+python <script_name.py> <arguments>
 ```
 
 ### Linux and macOS
 
-Make sure the scripts are executable:
+Ensure scripts are executable:
 
 ```bash
-chmod +x kill_named_process.py merge_files.py
+chmod +x <script_name.py>
 ```
 
-Run the scripts from the terminal:
+Run scripts from the terminal:
 
 ```bash
-./kill_named_process.py ProcessName
-```
-
-or
-
-```bash
-./merge_files.py --extensions txt py --ignore json log
+./<script_name.py> <arguments>
 ```
 
 ## Security Notice
 
-Ensure you download and run scripts from trusted sources only. Running unverified scripts can pose a security risk to your system.
+Download and run scripts only from trusted sources. Unverified scripts can pose a security risk.
 
 ## Troubleshooting
 
-- **Script does not run**: Ensure Python is correctly installed, and the `pyperclip` module is installed. Verify your PATH includes the directory containing the script.
-- **Clipboard does not contain the expected content**: Check that files matching your specified extensions exist within the directory or its subdirectories. Also, ensure the clipboard is not too large for your system to handle.
+- **Script does not run**: Verify Python installation and module presence.
+- **Unexpected script output**: Ensure correct script usage and arguments.
+- **Clipboard issues**: Check for large data or matching specified extensions.
 
-For further assistance, please refer to the official Python documentation or the documentation for the `pyperclip` module.
+For further assistance, refer to the official Python documentation or the documentation of the used modules.
